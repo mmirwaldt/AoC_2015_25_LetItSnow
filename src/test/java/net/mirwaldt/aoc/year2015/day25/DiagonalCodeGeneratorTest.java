@@ -1,5 +1,6 @@
 package net.mirwaldt.aoc.year2015.day25;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -13,6 +14,7 @@ public class DiagonalCodeGeneratorTest {
     @SuppressWarnings("unused")
     private static Stream<Arguments> diagonalCodeGenerator() {
         return Stream.of(
+                Arguments.of(new TailCallRecursionDiagonalCodeGenerator()),
                 Arguments.of(new RecursiveDiagonalCodeGenerator()),
                 Arguments.of(new LoopingDiagonalCodeGenerator())
         );
@@ -73,5 +75,19 @@ public class DiagonalCodeGeneratorTest {
         assertEquals(31527494L, diagonalCodeGenerator.generateCode(4, 6, startValue, operator));
         assertEquals(31663883L, diagonalCodeGenerator.generateCode(5, 6, startValue, operator));
         assertEquals(27995004L, diagonalCodeGenerator.generateCode(6, 6, startValue, operator));
+    }
+
+    @Test
+    void testNumberOfSells() {
+        assertEquals(1L, DiagonalCodeGenerator.calcNumberOfSells(1, 1));
+        assertEquals(2L, DiagonalCodeGenerator.calcNumberOfSells(2, 1));
+        assertEquals(3L, DiagonalCodeGenerator.calcNumberOfSells(1, 2));
+        assertEquals(4L, DiagonalCodeGenerator.calcNumberOfSells(3, 1));
+        assertEquals(5L, DiagonalCodeGenerator.calcNumberOfSells(2, 2));
+        assertEquals(6L, DiagonalCodeGenerator.calcNumberOfSells(1, 3));
+        assertEquals(7L, DiagonalCodeGenerator.calcNumberOfSells(4, 1));
+        assertEquals(16L, DiagonalCodeGenerator.calcNumberOfSells(6, 1));
+        assertEquals(18L, DiagonalCodeGenerator.calcNumberOfSells(6, 3));
+        assertEquals(21L, DiagonalCodeGenerator.calcNumberOfSells(1, 6));
     }
 }
