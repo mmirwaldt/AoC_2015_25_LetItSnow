@@ -17,16 +17,11 @@ public class TailCallRecursionDiagonalCodeGenerator implements DiagonalCodeGener
             return TailCalls.done(value);
         } else {
             return () -> {
-                int newRow;
-                int newCol;
                 if (col == 1) {
-                    newRow = 1;
-                    newCol = row - 1;
+                    return recursiveGenerateCode(1, row - 1, operator.applyAsLong(value), operator);
                 } else {
-                    newRow = row + 1;
-                    newCol = col - 1;
+                    return recursiveGenerateCode(row + 1, col - 1, operator.applyAsLong(value), operator);
                 }
-                return recursiveGenerateCode(newRow, newCol, operator.applyAsLong(value), operator);
             };
         }
     }
