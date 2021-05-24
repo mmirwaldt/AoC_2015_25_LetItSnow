@@ -8,20 +8,16 @@ import java.util.function.LongUnaryOperator;
  * However, @{@link TailCallRecursionDiagonalCodeGenerator} uses the same algorithm but works
  */
 public class RecursiveDiagonalCodeGenerator implements DiagonalCodeGenerator {
-//    long counter = 1;
-
     @Override
     public long generateCode(int row, int col, long startValue, LongUnaryOperator operator) {
         if(row < 1 || col < 1) {
             throw new IllegalArgumentException("Row and col must be at least 1 and not row=" + row + ", col=" + col);
         } else {
-//            counter = 1;
             return recursiveGenerateCode(row, col, startValue, operator);
         }
     }
 
     private long recursiveGenerateCode(int row, int col, long startValue, LongUnaryOperator operator) {
-//        System.out.println(counter++);
         if(row == 1 && col==1) {
             return startValue;
         } else if(col == 1) {
